@@ -17,25 +17,6 @@ O sistema foi desenvolvido utilizando uma arquitetura modular em Python buscando
 - `src/storage.py`: Modulo de persistencia responsavel por exportar o DataFrame processado e ordenado para um arquivo de relatorio estruturado (`processed_evm_report.csv`).
 - `src/main.py`: Modulo orquestrador que executa o pipeline completo de ponta a ponta.
 
-## Estrutura do Repositorio
-
-```text
-nr-evm-monitor/
-│
-├── data/
-│   ├── raw_field_data.csv
-│   └── processed_evm_report.csv
-│
-├── src/
-│   ├── __init__.py
-│   ├── cleaning.py
-│   ├── metrics.py
-│   ├── storage.py
-│   └── main.py
-│
-├── requirements.txt
-└── README.md
-
 
 ## Formulacao Matematica
 
@@ -82,3 +63,22 @@ A alocacao de orcamento adicional e modelada como um problema de Programacao Lin
 
 - **Restricoes de Demanda e Nao-Negatividade:**
   $$0 \le x_i \le M_i, \quad \forall i \in I$$
+
+## Estrutura do Repositorio
+
+```text
+nr-evm-monitor/
+│
+├── data/
+│   ├── raw_field_data.csv
+│   └── processed_evm_report.csv
+│
+├── src/
+│   ├── __init__.py
+│   ├── cleaning.py
+│   ├── metrics.py
+│   ├── storage.py
+│   └── main.py
+│
+├── requirements.txt
+└── README.md
