@@ -3,7 +3,7 @@ import pandas as pd
 
 
 def clean_currency(val):
-  """Função para limpar valores monetarios do campo
+  """Função para limpar valores monetários do campo
 
   (ex: '1.250.000,00', '980000', 'R$ 2.800.000,00') e converter para float.
   """
@@ -16,13 +16,13 @@ def clean_currency(val):
   # Remove 'R$', espaços em branco
   val_str = str(val).replace('R$', '').strip()
 
-  # Se o formato for brasileiro com pontos de milhar e vírgula decimal (ex: 1.250.000,00)
+  # Se o formato for br com pontos e vírgula
   if '.' in val_str and ',' in val_str:
     val_str = val_str.replace('.', '').replace(',', '.')
   # Se tiver apenas vírgula decimal (ex: 980000,00)
   elif ',' in val_str and '.' not in val_str:
     val_str = val_str.replace(',', '.')
-  # Se tiver apenas pontos (ex: 1.250.000 sem centavos)
+  # Se tiver apenas pontos
   elif val_str.count('.') > 1 or (
       val_str.count('.') == 1 and len(val_str.split('.')[1]) == 3
   ):
@@ -35,16 +35,14 @@ def clean_currency(val):
 
 
 def process_evm_data(filepath='data/raw_field_data.csv'):
-
   if not os.path.exists(filepath):
     print(f'Arquivo não encontrado em {filepath}')
     return None
 
   df = pd.read_csv(filepath, sep=';')
-  print('--- DADOS BRUTOS CARREGADOS DO CAMPO ---')
+  print('DADOS BRUTOS CARREGADOS DO CAMPO')
   print(df.head(3))
   print('\n' + '=' * 50 + '\n')
-
 
   df['PV_Clean'] = df['PV_Planejado'].apply(clean_currency)
   df['EV_Clean'] = df['EV_Agregado'].apply(clean_currency)
@@ -85,7 +83,7 @@ def process_evm_data(filepath='data/raw_field_data.csv'):
 if __name__ == '__main__':
   resultado = process_evm_data()
   if resultado is not None:
-    print('--- RESULTADOS PROCESSADOS E LIMPOS ---')
+    print('RESULTADOS PROCESSADOS E LIMPOS')
     print(
         resultado[[
             'ID_Proj',
