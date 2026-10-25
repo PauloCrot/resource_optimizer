@@ -35,3 +35,50 @@ nr-evm-monitor/
 │
 ├── requirements.txt
 └── README.md
+
+
+## Formulacao Matematica
+
+O sistema utiliza formulacoes matematicas divididas entre a camada de diagnostico de desempenho (EVM) e a camada de prescricao de decisoes (Otimizacao de Recursos).
+
+### 1. Indicadores de Desempenho (Earned Value Management)
+
+Para cada medicao $t$ de um projeto $i$, os indices de desempenho de custo e prazo sao calculados por:
+
+- **Indice de Desempenho de Custo (CPI):**
+  $$CPI_i = \frac{EV_i}{AC_i}$$
+
+- **Indice de Desempenho de Cronograma (SPI):**
+  $$SPI_i = \frac{EV_i}{PV_i}$$
+
+Onde:
+- $PV_i$ (Planned Value): Valor Planejado.
+- $EV_i$ (Earned Value): Valor Agregado.
+- $AC_i$ (Actual Cost): Custo Real.
+
+---
+
+### 2. Modelo de Otimizacao de Alocacao de Recursos
+
+A alocacao de orcamento adicional e modelada como um problema de Programacao Linear (Mochila Fracionaria / Fractional Knapsack), considerando apenas a medicao mais recente de cada projeto que apresente desvio ($CPI_i < 1.0$ ou $SPI_i < 1.0$).
+
+#### Parametros e Variaveis:
+- $I$: Conjunto de projetos elegiveis com desvio no portfolio.
+- $B_{total}$: Orcamento global limite para aporte financeiro ($B_{total} = 2.500.000,00$).
+- $AC_i$: Custo real atual do projeto $i$.
+- $M_i$: Demanda maxima de aporte do projeto $i$, definida como 30% do custo real:
+  $$M_i = 0.30 \cdot AC_i$$
+- $W_i$: Fator de urgencia (peso da funcao objetivo), inversamente proporcional a media dos indices de desempenho:
+  $$W_i = \max\left(0.1, 2.0 - \frac{CPI_i + SPI_i}{2}\right)$$
+- $x_i$: Variavel de decisao representando o montante financeiro alocado ao projeto $i$.
+
+#### Formulacao do Modelo:
+
+- **Funcao Objetivo:** Maximizar o retorno ponderado de prioridade sobre os projetos contemplados:
+  $$\max \sum_{i \in I} W_i \cdot x_i$$
+
+- **Restricao de Orcamento Global:**
+  $$\sum_{i \in I} x_i \le B_{total}$$
+
+- **Restricoes de Demanda e Nao-Negatividade:**
+  $$0 \le x_i \le M_i, \quad \forall i \in I$$
