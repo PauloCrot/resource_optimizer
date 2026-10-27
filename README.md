@@ -33,9 +33,9 @@ Para cada medicao $t$ de um projeto $i$, os indices de desempenho de custo e pra
   $$SPI_i = \frac{EV_i}{PV_i}$$
 
 Onde:
-- $PV_i$ (Planned Value): Valor Planejado.
-- $EV_i$ (Earned Value): Valor Agregado.
-- $AC_i$ (Actual Cost): Custo Real.
+- $PV_i$: Valor Planejado.
+- $EV_i$: Valor Agregado.
+- $AC_i$: Custo Real.
 
 ---
 
@@ -66,19 +66,28 @@ A alocacao de orcamento adicional e modelada como um problema de Programacao Lin
 
 ## Estrutura do Repositorio
 
-```text
 nr-evm-monitor/
+│
+├── .github/
+│   └── workflows/
+│       └── ci.yml
 │
 ├── data/
 │   ├── raw_field_data.csv
-│   └── processed_evm_report.csv
+│   ├── processed_evm_report.csv
+│   └── optimized_resource_allocation.csv
 │
 ├── src/
 │   ├── __init__.py
 │   ├── cleaning.py
 │   ├── metrics.py
+│   ├── optimization.py
 │   ├── storage.py
 │   └── main.py
+│
+├── tests/
+│   ├── test_metrics.py
+│   └── test_optimization.py
 │
 ├── requirements.txt
 └── README.md

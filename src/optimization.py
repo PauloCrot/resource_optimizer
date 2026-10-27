@@ -1,5 +1,8 @@
 import pandas as pd
-from storage import save_optimization_report
+try:
+    from src.storage import save_optimization_report
+except ModuleNotFoundError:
+    from storage import save_optimization_report
 
 def optimize_resource_allocation(df, total_budget=2500000.0):
     """
