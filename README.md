@@ -64,6 +64,17 @@ A alocacao de orcamento adicional e modelada como um problema de Programacao Lin
 - **Restricoes de Demanda e Nao-Negatividade:**
   $$0 \le x_i \le M_i, \quad \forall i \in I$$
 
+  ## Dashboards e Visualizacoes
+
+O sistema gera automaticamente graficos na pasta `data/` para facilitar a tomada de decisao rapida:
+
+### Matriz de Desempenho Atual (CPI vs SPI)
+![Matriz CPI SPI](data/cpi_spi_matrix.png)
+
+### Tendencia Historica do Portfolio
+![Tendencia EVM](data/evm_trends.png)
+
+
 ## Estrutura do Repositorio
 
 nr-evm-monitor/
@@ -75,13 +86,16 @@ nr-evm-monitor/
 ├── data/
 │   ├── raw_field_data.csv
 │   ├── processed_evm_report.csv
-│   └── optimized_resource_allocation.csv
+│   ├── optimized_resource_allocation.csv
+│   ├── cpi_spi_matrix.png
+│   └── evm_trends.png
 │
 ├── src/
 │   ├── __init__.py
 │   ├── cleaning.py
 │   ├── metrics.py
 │   ├── optimization.py
+│   ├── plots.py
 │   ├── storage.py
 │   └── main.py
 │
