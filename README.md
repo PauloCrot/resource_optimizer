@@ -118,6 +118,18 @@ O sistema gera automaticamente graficos na pasta `data/` para facilitar a tomada
    ```
 
 
+### Execução via Docker
+
+```bash
+# 1. Construir a imagem containerizada
+docker build -t nr-evm-monitor .
+
+# 2. Executar a Auditoria EVM (Pipeline Padrão)
+docker run --rm nr-evm-monitor
+
+# 3. Executar a Análise Preditiva de IA (ML)
+docker run --rm nr-evm-monitor python src/predict.py
+
 
 ## Estrutura do Repositorio
 ```text
